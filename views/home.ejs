@@ -3,6 +3,7 @@
 <p><%=content  %></p> 
 <% posts.forEach(element => { %>
  <h1><%= element.postTitle %> </h1>
- <p><%= element.postContent %> </p>
+ <% const path = `/posts/${element.postTitle}`; %> 
+ <p><%= element.postContent.substring(0,150) %>...<a href="<%= path %>" >Read More</a> </p>
 <% }) %>
 <%-include("partials/footer")-%>
