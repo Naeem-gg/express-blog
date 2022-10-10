@@ -5,5 +5,7 @@
  <h1><%= element.postTitle %> </h1>
  <% const path = `/posts/${element.postTitle}`; %> 
  <p><%= element.postContent.substring(0,150) %>...<a href="<%= path %>" >Read More</a> </p>
-<% }) %>
+
+ <% }) %>
+ <a href="/compose" class="compose">Compose a new post</a>
 <%-include("partials/footer")-%>

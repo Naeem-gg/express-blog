@@ -1,3 +1,19 @@
+.compose
+{
+    border: 3px solid;
+    float: right;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    color:blueviolet;
+    font-size: x-large;
+    margin-top: 100px;
+}
+h3 a:hover
+{
+    background-color: rebeccapurple;
+}
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
