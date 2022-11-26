@@ -7,8 +7,14 @@
     text-align: center;
     text-decoration: none;
     color:blueviolet;
-    font-size: x-large;
+    font-size: large;
     margin-top: 100px;
+}
+.compose:hover
+{
+    background-color: plum;
+    text-decoration: none;
+    color:white;
 }
 h3 a:hover
 {

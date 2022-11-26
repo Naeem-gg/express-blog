@@ -1,6 +1,6 @@
 <%-include("partials/header")-%>
-<h1>Home</h1>
-<p><%=content  %></p> 
+<h1><%= found.title %> </h1>
+<p><%=found.content  %></p> 
 <% posts.forEach(element => { %>
  <h1><%= element.postTitle %> </h1>
  <% const path = `/posts/${element.postTitle}`; %> 
