@@ -41,9 +41,9 @@ app.use(express.static("public"));
 
 //GET routes
 app.get("/", function (req, res) {
-  Blog.findOne({ title: "Home" }, (err, found) => {
+  Blog.find({}, (err, found) => {
     // console.log(found);
-    res.render("home", { found: found, posts: posts })
+    res.render("home", { found: found})
   });
   // console.log(posts);
 
@@ -86,7 +86,10 @@ app.post("/compose", function (req, res) {
     console.log(newBlog);
     // posts.push(post);
     // res.redirect("/");
-    res.render("home",{posts:newBlog});
+    Blog.find({},(err,found)=>{
+
+      res.render("home",{found:found});
+    });
   }
 });
 

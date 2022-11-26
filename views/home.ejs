@@ -1,11 +1,11 @@
 <%-include("partials/header")-%>
-<h1><%= found.title %> </h1>
-<p><%=found.content  %></p> 
-<% posts.forEach(element => { %>
- <h1><%= element.postTitle %> </h1>
- <% const path = `/posts/${element.postTitle}`; %> 
- <p><%= element.postContent.substring(0,150) %>...<a href="<%= path %>" >Read More</a> </p>
+<% const home = found.find(item=>item.title === "Home");  %> 
+<h1><%= home.title %> </h1>
+<p><%= home.content%> </p> 
 
- <% }) %>
+ <h1></h1>
+ 
+ <p>...<a href="#" >Read More</a> </p>
+
  <a href="/compose" class="compose">Compose a new post</a>
 <%-include("partials/footer")-%>
