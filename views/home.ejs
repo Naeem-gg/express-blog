@@ -1,11 +1,11 @@
 <%-include("partials/header")-%>
-<% const home = found.find(item=>item.title === "Home");  %> 
-<h1><%= home.title %> </h1>
-<p><%= home.content%> </p> 
-
- <h1></h1>
+<h1><%= found[0].title %> </h1>
+<p><%= found[0].content%> </p> 
+<% for(let i=3 ; i< found.length; i++){ %> 
+ <h1><%= found[i].title%> </h1>
  
- <p>...<a href="#" >Read More</a> </p>
+ <p><%= found[i].content %> ...<a href="#" >Read More</a> </p>
 
+ <% } %> 
  <a href="/compose" class="compose">Compose a new post</a>
 <%-include("partials/footer")-%>
