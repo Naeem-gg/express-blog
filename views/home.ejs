@@ -2,10 +2,15 @@
 <h1><%= found[0].title %> </h1>
 <p><%= found[0].content%> </p> 
 <% for(let i=3 ; i< found.length; i++){ %> 
- <h1><%= found[i].title%> </h1>
- 
- <p><%= found[i].content %> ...<a href="#" >Read More</a> </p>
+    <div class="post">
+        <form action="/crud" method="post">
 
+            <h1><%= found[i].title%> </h1><br>
+            <% let path = `/posts/${found[i]._id}` %> 
+            <button type="submit" class="del" name="id" value="<%= found[i]._id %> ">Delete</button>
+            <p><%= found[i].content.substring(0,150) %> ...<a href=<%= path %>  >Read More</a> </p><br>
+        </form>
+    </div>
  <% } %> 
  <a href="/compose" class="compose">Compose a new post</a>
 <%-include("partials/footer")-%>

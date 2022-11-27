@@ -27,7 +27,7 @@ Blog.find({}, (err, result) => {
     console.log("Inserting items...")
     Blog.insertMany([home, about, contact]);
   }
-  else{console.log("Items found");}
+  else { console.log("Items found"); }
 });
 const posts = [];
 // const homeStartingContent = new Blog({title:"homeStartingContent",content:"Hola this is starter content from mongoDb"});
@@ -43,7 +43,7 @@ app.use(express.static("public"));
 app.get("/", function (req, res) {
   Blog.find({}, (err, found) => {
     // console.log(found);
-    res.render("home", { found: found})
+    res.render("home", { found: found })
   });
   // console.log(posts);
 
@@ -65,32 +65,51 @@ app.get("/compose", function (req, res) {
 });
 
 app.get("/posts/:post", function (req, res) {
-  posts.forEach(function (post) {
-    const requiredPost = lodash.lowerCase(req.params.post);
-    const storedPost = lodash.lowerCase(post.postTitle);
-    if (storedPost === requiredPost) {
-      res.render("post", { title: post.postTitle, content: post.postContent })
-    }
 
+  let id = req.params.post;
+  Blog.findById(id, function (err, found) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      // res.send(found);
+      res.render("post", { title: found.title, content: found.content });
+    }
   });
+
+  // posts.forEach(function (post) {
+  //   const requiredPost = lodash.lowerCase(req.params.post);
+  //   const storedPost = lodash.lowerCase(post.postTitle);
+  //   if (storedPost === requiredPost) {
+  //     res.render("post", { title: post.postTitle, content: post.postContent })
+  //   }
+
 });
 
 //POST routes
 app.post("/compose", function (req, res) {
   const postTitle = req.body.title;
   const postContent = req.body.content;
-  const newBlog = new Blog({title:postTitle,content:postContent});
-  if(newBlog.save())
-  {
+  const newBlog = new Blog({ title: postTitle, content: postContent });
+  if (newBlog.save()) {
     const post = { postTitle, postContent }
     console.log(newBlog);
-    // posts.push(post);
-    // res.redirect("/");
-    Blog.find({},(err,found)=>{
-
-      res.render("home",{found:found});
-    });
+      res.redirect("/");
+    
   }
+  else{
+    res.render("error");
+  }
+});
+app.post("/crud", (req, res) => {
+
+  let id = req.body.id;
+  id = id.toString().trim();
+  Blog.findByIdAndRemove(id, (err, someVar) => {
+    if (err) { console.log(err) } else {
+      res.redirect("/")
+    }
+  });
 });
 
 //PORT
